@@ -1,0 +1,3 @@
+/home/xue/Workspace/Udacity-CPP/chatbot/build/CMakeFiles/rebuild_cache.dir
+/home/xue/Workspace/Udacity-CPP/chatbot/build/CMakeFiles/edit_cache.dir
+/home/xue/Workspace/Udacity-CPP/chatbot/build/CMakeFiles/membot.dir
