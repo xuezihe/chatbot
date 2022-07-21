@@ -1,6 +1,7 @@
 #ifndef CHATLOGIC_H_
 #define CHATLOGIC_H_
 
+#include <memory>
 #include <vector>
 #include <string>
 #include "chatgui.h"
@@ -12,13 +13,18 @@ class GraphNode;
 
 class ChatLogic
 {
-private:
-    //// STUDENT CODE
+private: 
+    ////TODO: STUDENT CODE
     ////
 
     // data handles (owned)
-    std::vector<GraphNode *> _nodes;
-    std::vector<GraphEdge *> _edges;
+    //proprietary type definitions
+    // std::vector<GraphNode *> _nodes;
+    // std::vector<GraphEdge *> _edges;
+    typedef std::shared_ptr<GraphNode> node_type;
+    std::vector<node_type> _nodes;
+    typedef std::shared_ptr<GraphEdge> edge_type;
+    std::vector<edge_type> _edges;
 
     ////
     //// EOF STUDENT CODE

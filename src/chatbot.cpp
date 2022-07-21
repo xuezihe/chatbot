@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -20,7 +21,7 @@ ChatBot::ChatBot()
 // constructor WITH memory allocation
 ChatBot::ChatBot(std::string filename)
 {
-    std::cout << "ChatBot Constructor" << std::endl;
+    std::cout << "ChatBot Constructor " << std::endl;
     
     // invalidate data handles
     _chatLogic = nullptr;
@@ -32,19 +33,87 @@ ChatBot::ChatBot(std::string filename)
 
 ChatBot::~ChatBot()
 {
-    std::cout << "ChatBot Destructor" << std::endl;
+    std::cout << "ChatBot Destructor " <<this << std::endl;
 
     // deallocate heap memory
     if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
     {
+        //TODO:
         delete _image;
         _image = NULL;
     }
 }
 
-//// STUDENT CODE
+//// done :STUDENT CODE
 ////
 
+//copy constructor 
+ChatBot::ChatBot(const ChatBot &source){
+    std::cout << "ChatBot copy constructor " <<this << std::endl;
+    if (_image != NULL) {
+        delete _image;
+        _image=NULL;
+    }
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+    _image =new wxBitmap(*source._image);
+
+
+}
+
+//copy assignment constructor
+ChatBot &ChatBot::operator=(const ChatBot &source){
+std::cout << "ChatBot copy assignment constructor " <<this << std::endl;
+if (this ==&source) {
+    return *this;
+}
+
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+    if(_image != NULL)
+    {
+        delete _image;
+        _image=NULL;
+    }
+    _image = new wxBitmap(*source._image);
+    return *this;
+}
+
+//move constructor
+    ChatBot::ChatBot(ChatBot &&source)
+    {
+        std::cout << "ChatBot move constructor " <<this << std::endl;
+        if (_image !=NULL) {
+            delete _image;
+            _image=NULL;
+        }
+        this->_chatLogic = source._chatLogic;
+        this->_rootNode = source._rootNode;
+        this->_image = source.GetImageHandle();
+        source._chatLogic = nullptr;
+        source._rootNode = nullptr;
+        source._image = NULL;
+    }
+//move assignment constructor
+    ChatBot &ChatBot::operator=(ChatBot &&source)
+    {
+        std::cout << "ChatBot move assignment constructor " <<this << std::endl;
+
+        if (this == &source) {
+        return *this;
+        }
+        if (_image !=NULL) {
+            delete _image;
+            _image=NULL;
+        }
+        this->_chatLogic = source._chatLogic;
+        this->_rootNode = source._rootNode;
+        this->_image = source.GetImageHandle();
+        source._chatLogic = nullptr;
+        source._rootNode = nullptr;
+        source._image = nullptr;
+        return *this;
+    }
 ////
 //// EOF STUDENT CODE
 
