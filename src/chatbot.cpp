@@ -75,24 +75,17 @@ if (this ==&source) {
 //move constructor
     ChatBot::ChatBot(ChatBot &&source)  
     {
+        if (_image ==NULL) {
+            delete _image;
+        }
         std::cout << "ChatBot move constructor " <<this << std::endl;
-        // if (_image !=NULL) {
-        //     delete _image;
-        //     _image=NULL;
-        // }
-        // this->_chatLogic = source._chatLogic;
-        // this->_rootNode = source._rootNode;
-        // this->_image = source.GetImageHandle();
-        // source._chatLogic = nullptr;
-        // source._rootNode = nullptr;
-        // source._image = NULL;
         this->_image = source._image;
         this->_chatLogic = source._chatLogic;
         this->_rootNode = source._rootNode;
         this->_chatLogic->SetChatbotHandle(this);    
         source._image = NULL;
-        source._chatLogic = NULL;
-        source._rootNode = NULL;
+        source._chatLogic = nullptr;
+        source._rootNode = nullptr;
     
 
 
@@ -100,24 +93,6 @@ if (this ==&source) {
 //move assignment constructor
     ChatBot &ChatBot::operator=(ChatBot &&source)
     {
-        // std::cout << "ChatBot move assignment constructor " <<this << std::endl;
-
-        // if (this == &source) {
-        // return *this;
-        // }
-        // if (_image !=NULL) {
-        //     delete _image;
-        //     _image=NULL;
-        // }
-        // this->_chatLogic = source._chatLogic;
-        // this->_rootNode = source._rootNode;
-        // this->_image = source.GetImageHandle();
-        // this->_chatLogic->SetChatbotHandle(this);    
-        // source._chatLogic = nullptr;
-        // source._rootNode = nullptr;
-        // source._image = nullptr;
-        // return *this;
-
         std::cout << "ChatBot Move Assignment Operator" << std::endl;
     if (&source == this)
         return *this;
@@ -131,8 +106,9 @@ if (this ==&source) {
 		source._chatLogic = NULL;
 		source._rootNode = NULL;
 		source._image = NULL;
-        return *this;
+        
 	}
+    return *this;;
     }
 ////
 //// EOF STUDENT CODE
