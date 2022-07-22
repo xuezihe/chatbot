@@ -21,7 +21,7 @@ private:
     //proprietary type definitions
     // std::vector<GraphNode *> _nodes;
     // std::vector<GraphEdge *> _edges;
-    typedef std::shared_ptr<GraphNode> node_type;
+    typedef std::unique_ptr<GraphNode> node_type;
     std::vector<node_type> _nodes;
     typedef std::shared_ptr<GraphEdge> edge_type;
     std::vector<edge_type> _edges;
